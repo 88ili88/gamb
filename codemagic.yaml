@@ -1,27 +1,26 @@
 workflows:
   time-sync:
     name: Build iOS & Android
-    instance_type: mac_mini
     environment:
       flutter: stable
       vars:
-        APP_IDENTIFIER: com.example.time_sync_demo
+        APP_IDENTIFIER: com.ili.gamb
+
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
+
       - name: Build Android APK
         script: flutter build apk --release
+
       - name: Build iOS IPA
         script: flutter build ipa --no-codesign
+
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
       - build/ios/ipa/*.ipa
+
     publishing:
       email:
         recipients:
-          - your@example.com
-    ios:
-      code_signing:
-        provisioning_profile:
-          automatic: true
-        signing_identity: Apple Development
+          - ilias.khayatelg@gmail.com
